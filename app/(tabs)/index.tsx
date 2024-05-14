@@ -14,7 +14,17 @@ import { useEffect, useState } from "react";
 export default function HomeScreen() {
   return (
     <>
+
+
+      <Text style={styles.titulo}
+      >
+        React-Native - {"<AsyncStorage />"}
+      </Text>
+
+
       <View style={styles.contenedor}>
+
+
         <TextInput
           style={styles.input}
           placeholder="Escribe tu Nombre"
@@ -39,9 +49,18 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+
+  titulo: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "900",
+    padding: 10,
+    backgroundColor: "red",
+    textAlign: "center"
+  },
   contenedor: {
     flex: 1,
-    backgroundColor: "#878B88",
+    backgroundColor: "#C7C9C4",
     alignItems: "center",
     justifyContent: "center",
 
@@ -65,6 +84,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
     textTransform: "uppercase",
     width: 300
-
   }
 });
