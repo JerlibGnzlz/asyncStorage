@@ -14,17 +14,57 @@ import { useEffect, useState } from "react";
 export default function HomeScreen() {
   return (
     <>
-      <View>
-        <TextInput placeholder="Escribe tu Nombre" />
+      <View style={styles.contenedor}>
+        <TextInput
+          style={styles.input}
+          placeholder="Escribe tu Nombre"
+        />
 
-        <Button title="Guardar" color="#333" />
+        <Button
+          title="Guardar"
+          color="#9f0909"
+        />
 
-        <TouchableHighlight>
-          <Text>Eliminar Nombre &times;</Text>
+        <TouchableHighlight
+          style={styles.btnEliminar}
+        >
+          <Text
+            style={styles.txtEliminar}
+          >Eliminar Nombre &times;
+          </Text>
         </TouchableHighlight>
       </View>
     </>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  contenedor: {
+    flex: 1,
+    backgroundColor: "#878B88",
+    alignItems: "center",
+    justifyContent: "center",
+
+
+  },
+  input: {
+    borderColor: "##666",
+    borderBottomWidth: 1,
+    width: 300,
+    height: 40,
+    margin: 20
+  },
+  btnEliminar: {
+    padding: 10,
+    marginTop: 20,
+
+  },
+  txtEliminar: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+    textTransform: "uppercase",
+    width: 300
+
+  }
+});
