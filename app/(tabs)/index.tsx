@@ -16,14 +16,12 @@ export default function HomeScreen() {
     <>
 
 
-      <Text style={styles.titulo}
-      >
-        React-Native - {"<AsyncStorage />"}
-      </Text>
-
 
       <View style={styles.contenedor}>
 
+        <Text style={styles.titulo}>
+          React-Native - {"<AsyncStorage />"}
+        </Text>
 
         <TextInput
           style={styles.input}
@@ -32,12 +30,10 @@ export default function HomeScreen() {
 
         <Button
           title="Guardar"
-          color="#9f0909"
         />
 
         <TouchableHighlight
-          style={styles.btnEliminar}
-        >
+          style={styles.btnEliminar} >
           <Text
             style={styles.txtEliminar}
           >Eliminar Nombre &times;
@@ -51,20 +47,21 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
 
   titulo: {
+    marginVertical: 30,
     color: "white",
     fontSize: 20,
     fontWeight: "900",
     padding: 10,
-    backgroundColor: "red",
-    textAlign: "center"
+    backgroundColor: "#2E73D7",
+    textAlign: "center",
+    borderRadius: 30
   },
   contenedor: {
     flex: 1,
     backgroundColor: "#C7C9C4",
     alignItems: "center",
     justifyContent: "center",
-
-
+    margin: 10,
   },
   input: {
     borderColor: "##666",
@@ -74,15 +71,16 @@ const styles = StyleSheet.create({
     margin: 20
   },
   btnEliminar: {
+    backgroundColor: "red",
     padding: 10,
     marginTop: 20,
-
+    borderRadius: 30
   },
   txtEliminar: {
     color: "white",
     fontWeight: "bold",
     textAlign: "center",
     textTransform: "uppercase",
-    width: 300
+    width: 300,
   }
 });
