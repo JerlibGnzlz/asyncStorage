@@ -12,19 +12,46 @@ import { useEffect, useState } from "react";
 
 export default function HomeScreen() {
   const [inputTexto, guardarInputTexto] = useState("");
+  const [nombreStorage, guardarNombreStorage] = useState("");
+
+  useEffect(() => {
+    obtenerDatosStorage()
+  }, []);
 
   const guardarDatos = async () => {
-    try {
+    try
+    {
       await AsyncStorage.setItem("nombre", inputTexto);
-    } catch (error) {
+    } catch (error)
+    {
       console.log(error);
     }
   };
+
+  const obtenerDatosStorage = async () => {
+    try
+    {
+      const nombre = await AsyncStorage.getItem("nombre")
+      if (nombre !== null)
+      {
+        guardarNombreStorage(nombre)
+      } else
+      {
+        console.log("Nombre no encontrado en el almacenamiento.")
+      }
+      console.log(nombre)
+    } catch (error)
+    {
+      console.log(error)
+    }
+  }
 
   return (
     <>
       <View style={styles.contenedor}>
         <Text style={styles.titulo}>React-Native - {"<AsyncStorage />"}</Text>
+
+        <Text>Hola: {nombreStorage}</Text>
 
         <TextInput
           style={styles.input}
