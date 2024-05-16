@@ -7,37 +7,35 @@ import {
   Button,
   TouchableHighlight,
 } from "react-native";
-// import Storage from "react-native-storage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 
 export default function HomeScreen() {
+  const [inputTexto, guardarInputTexto] = useState("");
+
+  const guardarDatos = async () => {
+    try {
+      await AsyncStorage.setItem("nombre", inputTexto);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
-
-
-
       <View style={styles.contenedor}>
-
-        <Text style={styles.titulo}>
-          React-Native - {"<AsyncStorage />"}
-        </Text>
+        <Text style={styles.titulo}>React-Native - {"<AsyncStorage />"}</Text>
 
         <TextInput
           style={styles.input}
           placeholder="Escribe tu Nombre"
+          onChangeText={(texto) => guardarInputTexto(texto)}
         />
 
-        <Button
-          title="Guardar"
-        />
+        <Button title="Guardar" onPress={() => guardarDatos()} />
 
-        <TouchableHighlight
-          style={styles.btnEliminar} >
-          <Text
-            style={styles.txtEliminar}
-          >Eliminar Nombre &times;
-          </Text>
+        <TouchableHighlight style={styles.btnEliminar}>
+          <Text style={styles.txtEliminar}>Eliminar Nombre &times;</Text>
         </TouchableHighlight>
       </View>
     </>
@@ -45,7 +43,6 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-
   titulo: {
     marginVertical: 30,
     color: "white",
@@ -54,7 +51,7 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "#2E73D7",
     textAlign: "center",
-    borderRadius: 30
+    borderRadius: 30,
   },
   contenedor: {
     flex: 1,
@@ -68,13 +65,13 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     width: 300,
     height: 40,
-    margin: 20
+    margin: 20,
   },
   btnEliminar: {
     backgroundColor: "red",
     padding: 10,
     marginTop: 20,
-    borderRadius: 30
+    borderRadius: 30,
   },
   txtEliminar: {
     color: "white",
@@ -82,5 +79,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
     textTransform: "uppercase",
     width: 300,
-  }
+  },
 });
