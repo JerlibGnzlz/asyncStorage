@@ -19,39 +19,45 @@ export default function HomeScreen() {
   }, []);
 
   const guardarDatos = async () => {
-    try
-    {
+    try {
       await AsyncStorage.setItem("nombre", inputTexto);
-    } catch (error)
-    {
+      guardarNombreStorage(inputTexto)
+    } catch (error) {
       console.log(error);
     }
   };
 
   const obtenerDatosStorage = async () => {
-    try
-    {
+    try {
       const nombre = await AsyncStorage.getItem("nombre")
-      if (nombre !== null)
-      {
+      if (nombre !== null) {
         guardarNombreStorage(nombre)
-      } else
-      {
+      } else {
         console.log("Nombre no encontrado en el almacenamiento.")
       }
       console.log(nombre)
-    } catch (error)
-    {
+    } catch (error) {
       console.log(error)
     }
   }
+  const eliminarDatos = async () => {
+    try {
+      const nombre = await AsyncStorage.removeItem("nombre")
+      guardarNombreStorage("")
+      return nombre
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 
   return (
     <>
       <View style={styles.contenedor}>
         <Text style={styles.titulo}>React-Native - {"<AsyncStorage />"}</Text>
 
-        <Text>Hola: {nombreStorage}</Text>
+        {nombreStorage ? <Text>Hola: {nombreStorage}</Text> : null}
+
 
         <TextInput
           style={styles.input}
@@ -61,9 +67,13 @@ export default function HomeScreen() {
 
         <Button title="Guardar" onPress={() => guardarDatos()} />
 
-        <TouchableHighlight style={styles.btnEliminar}>
-          <Text style={styles.txtEliminar}>Eliminar Nombre &times;</Text>
-        </TouchableHighlight>
+        {nombreStorage ?
+          <TouchableHighlight
+            onPress={() => eliminarDatos()}
+            style={styles.btnEliminar}>
+            <Text style={styles.txtEliminar}>Eliminar Nombre &times;</Text>
+          </TouchableHighlight>
+          : null}
       </View>
     </>
   );
